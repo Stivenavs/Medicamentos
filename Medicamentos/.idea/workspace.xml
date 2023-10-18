@@ -35,7 +35,6 @@
       <change afterPath="$PROJECT_DIR$/src/main/java/Inventario/services/interfaces/MedicamentoService.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/Inventario/services/interfaces/VentaService.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../scriptBD.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,7 +163,8 @@
       <workItem from="1697068765291" duration="1423000" />
       <workItem from="1697070214759" duration="218000" />
       <workItem from="1697070458582" duration="1108000" />
-      <workItem from="1697073665361" duration="18086000" />
+      <workItem from="1697073665361" duration="18287000" />
+      <workItem from="1697519005814" duration="166000" />
     </task>
     <servers />
   </component>
@@ -194,15 +194,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/Inventario/services/impl/MedicamentoServiceImpl.java</url>
           <line>55</line>
           <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/Inventario/controllers/MedicamentoController.java</url>
-          <line>52</line>
-          <properties class="Inventario.controllers.MedicamentoController" method="ObtenerMedicamento">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
