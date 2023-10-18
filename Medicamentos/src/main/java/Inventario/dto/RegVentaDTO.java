@@ -3,9 +3,10 @@ package Inventario.dto;
 import java.util.Date;
 
 public record RegVentaDTO(
-        Date FechaHora,
+        String fechaHora,
         int cantidad,
-        RegMedicamentoDTO medicamentoDTO,
+        int idMedicamento,
+        float valorUnitario,
         float valorTotal
         ) {
 }

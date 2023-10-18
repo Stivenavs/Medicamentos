@@ -25,9 +25,9 @@
       <change afterPath="$PROJECT_DIR$/src/main/java/Inventario/dto/DetalleVentaDTO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/Inventario/dto/RegMedicamentoDTO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/Inventario/dto/RegVentaDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Inventario/dto/VentaFiltroDTO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/Inventario/entities/Medicamento.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/Inventario/entities/Venta.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Inventario/model/Estado.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/Inventario/repositories/MedicamentoRepo.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/Inventario/repositories/VentaRepo.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/Inventario/services/impl/MedicamentoServiceImpl.java" afterDir="false" />
@@ -66,8 +66,8 @@
       <list>
         <option value="Interface" />
         <option value="Enum" />
-        <option value="Record" />
         <option value="Class" />
+        <option value="Record" />
       </list>
     </option>
   </component>
@@ -165,6 +165,8 @@
       <workItem from="1697070458582" duration="1108000" />
       <workItem from="1697073665361" duration="18287000" />
       <workItem from="1697519005814" duration="166000" />
+      <workItem from="1697602852153" duration="5303000" />
+      <workItem from="1697634942453" duration="7353000" />
     </task>
     <servers />
   </component>
@@ -181,21 +183,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Inventario/services/impl/MedicamentoServiceImpl.java</url>
-          <line>36</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Inventario/services/impl/MedicamentoServiceImpl.java</url>
-          <line>55</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

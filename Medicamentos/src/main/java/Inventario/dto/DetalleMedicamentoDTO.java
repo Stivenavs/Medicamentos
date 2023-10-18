@@ -6,8 +6,8 @@ public record DetalleMedicamentoDTO(
         int Id,
         String nombre,
         String laboratorioFabrica,
-        LocalDate fechaFabricacion,
-        LocalDate FechaVencimiento,
+        String fechaFabricacion,
+        String fechaVencimiento,
         int cantidadStock,
         float valorUnitario,
         Boolean activo) {

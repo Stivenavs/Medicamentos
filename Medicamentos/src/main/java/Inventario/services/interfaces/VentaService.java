@@ -1,14 +1,15 @@
 package Inventario.services.interfaces;
 
-import Inventario.dto.DetalleMedicamentoDTO;
-import Inventario.dto.RegMedicamentoDTO;
+import Inventario.dto.DetalleVentaDTO;
+import Inventario.dto.RegVentaDTO;
+import Inventario.dto.VentaFiltroDTO;
 
 import java.util.List;
 
 public interface VentaService {
-    int crearMedicamento(RegMedicamentoDTO medicamentoDTO) throws Exception;
-    DetalleMedicamentoDTO obtenerMedicamento(int id) throws Exception;
-    int actualizarMedicamento(RegMedicamentoDTO medicamentoDTO) throws Exception;
-    void eliminarMedicamento(int id) throws Exception;
-    List<DetalleMedicamentoDTO> listarMedicamentos() throws Exception;
+
+    int registrarVenta(RegVentaDTO regVentaDTO) throws Exception;
+    List<DetalleVentaDTO> listarVentas() throws Exception;
+
+    List<DetalleVentaDTO> listarVentasFechas(VentaFiltroDTO ventaFiltroDTO) throws Exception;
 }

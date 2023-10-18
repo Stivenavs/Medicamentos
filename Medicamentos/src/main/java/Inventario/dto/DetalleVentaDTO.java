@@ -1,12 +1,13 @@
 package Inventario.dto;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public record DetalleVentaDTO(
         int id,
-        Date FechaHora,
+        LocalDateTime FechaHora,
         int cantidad,
-        RegMedicamentoDTO medicamentoDTO,
+        int idMedicamento,
         float valorTotal
 ) {
 }
