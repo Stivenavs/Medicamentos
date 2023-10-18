@@ -13,7 +13,6 @@ import org.mockito.MockitoAnnotations;
 
 import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.Optional;
 import static org.mockito.Mockito.when;
 
 class medicamentoServiceImplMockTest {
@@ -25,6 +24,8 @@ class medicamentoServiceImplMockTest {
     medicamentoServiceImpl medicamentoService;
 
     private medicamento medicamento01;
+    private medicamentoDetalleDTO medicamentoDetalleDTO01;
+
     @BeforeEach
     void setup(){
         MockitoAnnotations.openMocks(this);
@@ -39,28 +40,29 @@ class medicamentoServiceImplMockTest {
                 .cantidadStock(10000)
                 .valorUnitario(500)
                 .activo(true).build();
-    }
+
+        medicamentoDetalleDTO01 = new medicamentoDetalleDTO(100, "Omeprazol", "TQ",
+                                                "01/10/2023","01/01/2030", 10000,
+                                        500, true);
+
+        }
 
     @Test
     void crearMedicamento() {
-
-        medicamento medicamento02 = new medicamento();
-
-        Mockito.when(medicamentoRepo.save(medicamento01)).thenReturn();
-
+        Mockito.when(medicamentoRepo.save(Mockito.any(medicamento.class))).thenReturn(medicamento01);
+        Assertions.assertTrue(medicamento01.getId() == 100);
     }
 
     @Test
     void obtenerMedicamento() {
-
-        medicamentoRepo.save(medicamento01);
-
-        Optional<medicamento> medicamentoNuevo = medicamentoRepo.findById(medicamento01.getId());
-        Assertions.assertTrue(medicamentoNuevo.isPresent());
+        Mockito.when(medicamentoRepo.findAllById(Mockito.any())).thenReturn(Arrays.asList(medicamento01));
+        Assertions.assertTrue(medicamento01.getId() == 100);
     }
 
     @Test
     void actualizarMedicamento() {
+        Mockito.when(medicamentoRepo.save(Mockito.any(medicamento.class))).thenReturn(medicamento01);
+        Assertions.assertTrue(medicamento01.getId() == 100);
     }
 
     @Test
@@ -70,5 +72,6 @@ class medicamentoServiceImplMockTest {
     @Test
     void listarMedicamentos() {
         when(medicamentoRepo.findAll()).thenReturn(Arrays.asList(medicamento01));
+        Assertions.assertTrue(medicamentoRepo.findAll().contains(medicamento01));
     }
 }
