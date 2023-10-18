@@ -1,11 +1,10 @@
-package Inventario.entities;
+package inventario.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @Getter
@@ -13,7 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 @ToString
 @Data
-public class Venta implements Serializable {
+public class venta implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +23,7 @@ public class Venta implements Serializable {
     private int cantidad;
 
     @OneToOne
-    private Medicamento medicamento;
+    private inventario.entities.medicamento medicamento;
 
     private float valorUnitario;
 

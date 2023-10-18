@@ -1,9 +1,6 @@
-package Inventario.dto;
+package inventario.dto;
 
-import java.time.LocalDate;
-import java.util.Date;
-
-public record RegMedicamentoDTO(
+public record registroMedicamentoDTO(
         String nombre,
         String laboratorioFabrica,
         String fechaFabricacion,

@@ -1,8 +1,6 @@
-package Inventario.dto;
+package inventario.dto;
 
-import java.util.Date;
-
-public record RegVentaDTO(
+public record registroVentaDTO(
         String fechaHora,
         int cantidad,
         int idMedicamento,

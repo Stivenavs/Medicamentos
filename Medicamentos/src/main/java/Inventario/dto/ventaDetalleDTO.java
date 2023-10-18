@@ -1,9 +1,8 @@
-package Inventario.dto;
+package inventario.dto;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
-public record DetalleVentaDTO(
+public record ventaDetalleDTO(
         int id,
         LocalDateTime FechaHora,
         int cantidad,

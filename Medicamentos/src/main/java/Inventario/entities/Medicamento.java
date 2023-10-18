@@ -1,4 +1,4 @@
-package Inventario.entities;
+package inventario.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,12 +10,11 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@ToString
 @Data
-public class Medicamento implements Serializable {
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class medicamento implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +26,7 @@ public class Medicamento implements Serializable {
 
     private LocalDate fechaFabricacion;
 
-    private LocalDate FechaVencimiento;
+    private LocalDate fechaVencimiento;
 
     private int cantidadStock;
 
@@ -35,3 +34,4 @@ public class Medicamento implements Serializable {
 
     private Boolean activo;
 }
+

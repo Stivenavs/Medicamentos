@@ -1,15 +1,15 @@
-package Inventario.services.interfaces;
+package inventario.services.interfaces;
 
-import Inventario.dto.DetalleVentaDTO;
-import Inventario.dto.RegVentaDTO;
-import Inventario.dto.VentaFiltroDTO;
+import inventario.dto.ventaDetalleDTO;
+import inventario.dto.registroVentaDTO;
+import inventario.dto.filtroVentaDTO;
 
 import java.util.List;
 
-public interface VentaService {
+public interface ventaService {
 
-    int registrarVenta(RegVentaDTO regVentaDTO) throws Exception;
-    List<DetalleVentaDTO> listarVentas() throws Exception;
+    int registrarVenta(registroVentaDTO regVentaDTO) throws Exception;
+    List<ventaDetalleDTO> listarVentas() throws Exception;
 
-    List<DetalleVentaDTO> listarVentasFechas(VentaFiltroDTO ventaFiltroDTO) throws Exception;
+    List<ventaDetalleDTO> listarVentasFechas(filtroVentaDTO ventaFiltroDTO) throws Exception;
 }

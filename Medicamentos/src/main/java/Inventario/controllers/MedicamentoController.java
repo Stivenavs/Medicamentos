@@ -1,8 +1,8 @@
-package Inventario.controllers;
+package inventario.controllers;
 
-import Inventario.dto.DetalleMedicamentoDTO;
-import Inventario.dto.RegMedicamentoDTO;
-import Inventario.services.interfaces.MedicamentoService;
+import inventario.dto.medicamentoDetalleDTO;
+import inventario.dto.registroMedicamentoDTO;
+import inventario.services.interfaces.medicamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,16 +13,16 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/medicamentos")
-public class MedicamentoController {
+public class medicamentoController {
 
     @Autowired
-    private MedicamentoService medicamentoService;
+    private medicamentoService medicamento_Service;
 
     @PostMapping(value = "/crear")
-    public ResponseEntity<HttpStatus> CrearMedicamento(@RequestBody RegMedicamentoDTO regMedicamentoDTO) {
+    public ResponseEntity<HttpStatus> CrearMedicamento(@RequestBody registroMedicamentoDTO reg_MedicamentoDTO) {
 
         try{
-            medicamentoService.crearMedicamento(regMedicamentoDTO);
+            medicamento_Service.crearMedicamento(reg_MedicamentoDTO);
         }
         catch (Exception ex){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -32,11 +32,11 @@ public class MedicamentoController {
     }
 
     @GetMapping(value = "/listar")
-    public ResponseEntity<List<DetalleMedicamentoDTO>> ListarMedicamentos() {
-        List<DetalleMedicamentoDTO> listaMedicamentos = new ArrayList<>();
+    public ResponseEntity<List<medicamentoDetalleDTO>> ListarMedicamentos() {
+        List<medicamentoDetalleDTO> listaMedicamentos = new ArrayList<>();
 
         try {
-            listaMedicamentos = medicamentoService.listarMedicamentos();
+            listaMedicamentos = medicamento_Service.listarMedicamentos();
         }
         catch (Exception ex){
             return ResponseEntity.noContent().build();
@@ -46,11 +46,11 @@ public class MedicamentoController {
     }
 
     @GetMapping(value = "/obtener/{id}")
-    public ResponseEntity<DetalleMedicamentoDTO> ObtenerMedicamento(@PathVariable("id") int id) {
-        DetalleMedicamentoDTO medicamentoDTO;
+    public ResponseEntity<medicamentoDetalleDTO> ObtenerMedicamento(@PathVariable("id") int id) {
+        medicamentoDetalleDTO medicamentoDTO;
 
         try {
-            medicamentoDTO = medicamentoService.obtenerMedicamento(id);
+            medicamentoDTO = medicamento_Service.obtenerMedicamento(id);
         }
         catch (Exception ex){
             return ResponseEntity.noContent().build();
@@ -60,10 +60,10 @@ public class MedicamentoController {
     }
 
     @GetMapping(value = "/actualizar")
-    public ResponseEntity<HttpStatus> ActualizarMedicamento(@RequestBody DetalleMedicamentoDTO detalleMedicamentoDTO ) {
+    public ResponseEntity<HttpStatus> ActualizarMedicamento(@RequestBody medicamentoDetalleDTO detalle_MedicamentoDTO ) {
 
         try {
-            medicamentoService.actualizarMedicamento(detalleMedicamentoDTO);
+            medicamento_Service.actualizarMedicamento(detalle_MedicamentoDTO);
         }
         catch (Exception ex){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -77,7 +77,7 @@ public class MedicamentoController {
 
 
         try {
-            medicamentoService.eliminarMedicamento(id);
+            medicamento_Service.eliminarMedicamento(id);
         }
         catch (Exception ex){
             return ResponseEntity.noContent().build();

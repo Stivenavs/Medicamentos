@@ -1,13 +1,13 @@
-package Inventario.services.impl;
+package inventario.services.impl;
 
-import Inventario.dto.DetalleVentaDTO;
-import Inventario.dto.RegVentaDTO;
-import Inventario.dto.VentaFiltroDTO;
-import Inventario.entities.Medicamento;
-import Inventario.entities.Venta;
-import Inventario.repositories.MedicamentoRepo;
-import Inventario.repositories.VentaRepo;
-import Inventario.services.interfaces.VentaService;
+import inventario.dto.ventaDetalleDTO;
+import inventario.dto.registroVentaDTO;
+import inventario.dto.filtroVentaDTO;
+import inventario.entities.medicamento;
+import inventario.entities.venta;
+import inventario.repositories.medicamentoRepository;
+import inventario.repositories.ventaRepository;
+import inventario.services.interfaces.ventaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,17 +18,17 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class VentaServiceImpl implements VentaService {
+public class ventaServiceImpl implements ventaService {
 
-    private final MedicamentoRepo medicamentoRepo;
-    private final VentaRepo ventaRepo;
+    private final medicamentoRepository medicamentoRepository;
+    private final ventaRepository ventaRepository;
 
     @Override
-    public int registrarVenta(RegVentaDTO regVentaDTO) throws Exception {
-       Venta venta = new Venta();
-       Venta ventaNuevo;
-       Medicamento medicamento;
-       Optional<Medicamento> medicamentoOptional = medicamentoRepo.findById(regVentaDTO.idMedicamento());
+    public int registrarVenta(registroVentaDTO regVentaDTO) throws Exception {
+       venta venta = new venta();
+       inventario.entities.venta ventaNuevo;
+       medicamento medicamento;
+       Optional<inventario.entities.medicamento> medicamentoOptional = medicamentoRepository.findById(regVentaDTO.idMedicamento());
 
        if(medicamentoOptional.isEmpty()){
            throw new Exception("No existe un medicamento con el id: " + regVentaDTO.idMedicamento());
@@ -46,11 +46,11 @@ public class VentaServiceImpl implements VentaService {
            venta.setMedicamento(medicamento);
            venta.setValorUnitario(medicamento.getValorUnitario());
            venta.setValorTotal(medicamento.getValorUnitario() * regVentaDTO.cantidad());
-           ventaNuevo = ventaRepo.save(venta);
+           ventaNuevo = ventaRepository.save(venta);
 
            //disminuir el stock del medicmamento
            medicamento.setCantidadStock(medicamento.getCantidadStock()-regVentaDTO.cantidad());
-           medicamentoRepo.save(medicamento);
+           medicamentoRepository.save(medicamento);
 
            return ventaNuevo.getId();
        }
@@ -60,16 +60,16 @@ public class VentaServiceImpl implements VentaService {
     }
 
     @Override
-    public List<DetalleVentaDTO> listarVentas() throws Exception {
-        List<Venta> ventas = ventaRepo.findAll();
-        List<DetalleVentaDTO> listaVentas = new ArrayList<>();
+    public List<ventaDetalleDTO> listarVentas() throws Exception {
+        List<venta> ventas = ventaRepository.findAll();
+        List<ventaDetalleDTO> listaVentas = new ArrayList<>();
 
         if(ventas.isEmpty()){
             throw new Exception("No hay ventas registradas");
         }
 
-        for (Venta venta: ventas) {
-            listaVentas.add(new DetalleVentaDTO(venta.getId(),
+        for (inventario.entities.venta venta: ventas) {
+            listaVentas.add(new ventaDetalleDTO(venta.getId(),
                     venta.getFechaHora(),
                     venta.getCantidad(),
                     venta.getMedicamento().getId(),
@@ -81,9 +81,9 @@ public class VentaServiceImpl implements VentaService {
     }
 
     @Override
-    public List<DetalleVentaDTO> listarVentasFechas(VentaFiltroDTO ventaFiltroDTO) throws Exception {
-        List<Venta> ventas = ventaRepo.findAll();
-        List<DetalleVentaDTO> listaVentas = new ArrayList<>();
+    public List<ventaDetalleDTO> listarVentasFechas(filtroVentaDTO ventaFiltroDTO) throws Exception {
+        List<venta> ventas = ventaRepository.findAll();
+        List<ventaDetalleDTO> listaVentas = new ArrayList<>();
         LocalDateTime fechaInicio;
         LocalDateTime fechaFinal;
 
@@ -91,12 +91,8 @@ public class VentaServiceImpl implements VentaService {
             throw new Exception("No hay ventas registradas");
         }
 
-        for (Venta venta: ventas) {
-
-            if(venta.getFechaHora().toLocalDate() >= ventaFiltroDTO.fechaFinal().tol ){
-
-            }
-            listaVentas.add(new DetalleVentaDTO(venta.getId(),
+        for (inventario.entities.venta venta: ventas) {
+            listaVentas.add(new ventaDetalleDTO(venta.getId(),
                     venta.getFechaHora(),
                     venta.getCantidad(),
                     venta.getMedicamento().getId(),
