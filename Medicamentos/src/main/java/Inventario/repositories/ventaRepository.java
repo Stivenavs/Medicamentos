@@ -1,10 +1,10 @@
 package inventario.repositories;
 
-import inventario.entities.venta;
+import inventario.entities.Venta;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ventaRepository extends JpaRepository<venta, Integer> {
+public interface VentaRepository extends JpaRepository<Venta, Integer> {
 
 }

@@ -1,6 +1,6 @@
 package inventario.dto;
 
-public record medicamentoDetalleDTO(int Id,
+public record MedicamentoDetalleDTO(int Id,
                                     String nombre,
                                     String laboratorioFabrica,
                                     String fechaFabricacion,

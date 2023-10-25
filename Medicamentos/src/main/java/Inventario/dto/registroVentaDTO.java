@@ -1,6 +1,6 @@
 package inventario.dto;
 
-public record registroVentaDTO(
+public record RegistroVentaDTO(
         String fechaHora,
         int cantidad,
         int idMedicamento,

@@ -1,18 +1,18 @@
 package inventario.services.impl;
 
-import inventario.repositories.medicamentoRepository;
-import inventario.repositories.ventaRepository;
+import inventario.repositories.MedicamentoRepository;
+import inventario.repositories.VentaRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
-class ventaServiceImplMockTest {
+class VentaServiceImplMockTest {
 
     @Mock
-    private medicamentoRepository medicamentoRepository;
+    private MedicamentoRepository medicamentoRepository;
     @Mock
-    private ventaRepository ventaRepository;
+    private VentaRepository ventaRepository;
 
-    private ventaServiceImpl ventaService;
+    private VentaServiceImpl ventaService;
     @Test
     void registrarVenta() {
     }

@@ -1,8 +1,9 @@
 package inventario.services.impl;
 
-import inventario.entities.medicamento;
-import inventario.repositories.medicamentoRepository;
-import inventario.dto.medicamentoDetalleDTO;
+import inventario.dto.RegistroMedicamentoDTO;
+import inventario.entities.Medicamento;
+import inventario.dto.MedicamentoDetalleDTO;
+import inventario.repositories.MedicamentoRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,23 +16,23 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import static org.mockito.Mockito.when;
 
-class medicamentoServiceImplMockTest {
-
-    @Mock
-    private medicamentoRepository medicamentoRepo;
+class MedicamentoServiceImplMockTest {
 
     @InjectMocks
-    medicamentoServiceImpl medicamentoService;
+    MedicamentoServiceImpl medicamentoService;
 
-    private medicamento medicamento01;
-    private medicamentoDetalleDTO medicamentoDetalleDTO01;
+    private Medicamento medicamento01;
+    private MedicamentoDetalleDTO medicamentoDetalleDTO01;
+
+    @Mock
+    MedicamentoRepository medicamentoRepo;
 
     @BeforeEach
     void setup(){
         MockitoAnnotations.openMocks(this);
-        medicamentoService = new medicamentoServiceImpl(medicamentoRepo);
+        medicamentoService = new MedicamentoServiceImpl(medicamentoRepo);
 
-        medicamento01 = medicamento.builder()
+        medicamento01 = Medicamento.builder()
                 .id(100)
                 .nombre("Omeprazol")
                 .laboratorioFabrica("TQ")
@@ -41,7 +42,7 @@ class medicamentoServiceImplMockTest {
                 .valorUnitario(500)
                 .activo(true).build();
 
-        medicamentoDetalleDTO01 = new medicamentoDetalleDTO(100, "Omeprazol", "TQ",
+        medicamentoDetalleDTO01 = new MedicamentoDetalleDTO(100, "Omeprazol", "TQ",
                                                 "01/10/2023","01/01/2030", 10000,
                                         500, true);
 
@@ -49,7 +50,7 @@ class medicamentoServiceImplMockTest {
 
     @Test
     void crearMedicamento() {
-        Mockito.when(medicamentoRepo.save(Mockito.any(medicamento.class))).thenReturn(medicamento01);
+        Mockito.when(medicamentoRepo.save(Mockito.any(Medicamento.class))).thenReturn(medicamento01);
         Assertions.assertTrue(medicamento01.getId() == 100);
     }
 
@@ -61,7 +62,7 @@ class medicamentoServiceImplMockTest {
 
     @Test
     void actualizarMedicamento() {
-        Mockito.when(medicamentoRepo.save(Mockito.any(medicamento.class))).thenReturn(medicamento01);
+        Mockito.when(medicamentoRepo.save(Mockito.any(Medicamento.class))).thenReturn(medicamento01);
         Assertions.assertTrue(medicamento01.getId() == 100);
     }
 

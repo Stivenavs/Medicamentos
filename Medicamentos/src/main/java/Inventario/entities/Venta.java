@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @ToString
 @Data
-public class venta implements Serializable {
+public class Venta implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +23,7 @@ public class venta implements Serializable {
     private int cantidad;
 
     @OneToOne
-    private inventario.entities.medicamento medicamento;
+    private Medicamento medicamento;
 
     private float valorUnitario;
 

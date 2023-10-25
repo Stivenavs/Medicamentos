@@ -1,6 +1,6 @@
 package inventario.dto;
 
-public record registroMedicamentoDTO(
+public record RegistroMedicamentoDTO(
         String nombre,
         String laboratorioFabrica,
         String fechaFabricacion,

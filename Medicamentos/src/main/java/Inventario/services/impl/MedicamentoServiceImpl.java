@@ -1,34 +1,33 @@
 package inventario.services.impl;
 
 import inventario.dto.*;
-import inventario.entities.medicamento;
-import inventario.repositories.medicamentoRepository;
-import inventario.services.interfaces.medicamentoService;
+import inventario.entities.Medicamento;
+import inventario.repositories.MedicamentoRepository;
+import inventario.services.interfaces.MedicamentoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class medicamentoServiceImpl implements medicamentoService {
+public class MedicamentoServiceImpl implements MedicamentoService {
 
-    private final medicamentoRepository medicamentoRepository;
+    private final MedicamentoRepository medicamentoRepository;
 
     @Override
-    public int crearMedicamento(registroMedicamentoDTO medicamentoDTO) throws Exception {
-        medicamento medicamento = new medicamento();
-        inventario.entities.medicamento medicamentoNuevo = new medicamento();
+    public int crearMedicamento(RegistroMedicamentoDTO medicamentoDTO) throws Exception {
+        Medicamento medicamento = new Medicamento();
+        Medicamento medicamentoNuevo = new Medicamento();
+        LocalDate fechaFabricacion;
+        LocalDate fechaVencimiento;
 
-        LocalDate fechaFabricacion = LocalDate.of(Integer.parseInt(medicamentoDTO.fechaFabricacion().split("/")[2]),
-                                                    Integer.parseInt(medicamentoDTO.fechaFabricacion().split("/")[1]),
-                                                    Integer.parseInt(medicamentoDTO.fechaFabricacion().split("/")[0]));
-
-        LocalDate fechaVencimiento = LocalDate.of(Integer.parseInt(medicamentoDTO.fechaVencimiento().split("/")[2]),
-                                                    Integer.parseInt(medicamentoDTO.fechaVencimiento().split("/")[1]),
-                                                    Integer.parseInt(medicamentoDTO.fechaVencimiento().split("/")[0]));;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        fechaFabricacion = LocalDate.parse(medicamentoDTO.fechaFabricacion(), formatter);
+        fechaVencimiento = LocalDate.parse(medicamentoDTO.fechaVencimiento(), formatter);
 
         try{
             medicamento.setNombre(medicamentoDTO.nombre());
@@ -43,14 +42,14 @@ public class medicamentoServiceImpl implements medicamentoService {
             return medicamentoNuevo.getId();
         }
         catch (Exception ex){
-            throw ex;
+            throw new Exception("Error al registrar el medicamento");
         }
     }
 
     @Override
-    public medicamentoDetalleDTO obtenerMedicamento(int id) throws Exception {
-        Optional<medicamento> medicamentoOptional = medicamentoRepository.findById(id);
-        medicamento medicamento = new medicamento();
+    public MedicamentoDetalleDTO obtenerMedicamento(int id) throws Exception {
+        Optional<Medicamento> medicamentoOptional = medicamentoRepository.findById(id);
+        Medicamento medicamento = new Medicamento();
 
         if(medicamentoOptional.isEmpty()){
             throw new Exception("No existe un medicamento con el id: " + id);
@@ -58,7 +57,7 @@ public class medicamentoServiceImpl implements medicamentoService {
 
         medicamento = medicamentoOptional.get();
 
-        return new medicamentoDetalleDTO(medicamento.getId(),
+        return new MedicamentoDetalleDTO(medicamento.getId(),
                 medicamento.getNombre(),
                 medicamento.getLaboratorioFabrica(),
                 medicamento.getFechaFabricacion().toString(),
@@ -69,25 +68,21 @@ public class medicamentoServiceImpl implements medicamentoService {
     }
 
     @Override
-    public int actualizarMedicamento(medicamentoDetalleDTO detalle_MedicamentoDTO) throws Exception {
+    public int actualizarMedicamento(MedicamentoDetalleDTO detalle_MedicamentoDTO) throws Exception {
 
-        Optional<medicamento> medicamentoOptional = medicamentoRepository.findById(detalle_MedicamentoDTO.Id());
-        medicamento medicamento = new medicamento();
+        Optional<Medicamento> medicamentoOptional = medicamentoRepository.findById(detalle_MedicamentoDTO.Id());
+        Medicamento medicamento = new Medicamento();
         LocalDate fechaFabricacion;
         LocalDate fechaVencimiento;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
         if(medicamentoOptional.isEmpty()){
             throw new Exception("No existe un medicamento con el id: " + detalle_MedicamentoDTO.Id());
         }
 
         medicamento = medicamentoOptional.get();
-        fechaFabricacion = LocalDate.of(Integer.parseInt(detalle_MedicamentoDTO.fechaFabricacion().split("/")[2]),
-                                        Integer.parseInt(detalle_MedicamentoDTO.fechaFabricacion().split("/")[1]),
-                                        Integer.parseInt(detalle_MedicamentoDTO.fechaFabricacion().split("/")[0]));
-
-        fechaVencimiento = LocalDate.of(Integer.parseInt(detalle_MedicamentoDTO.fechaVencimiento().split("/")[2]),
-                                        Integer.parseInt(detalle_MedicamentoDTO.fechaVencimiento().split("/")[1]),
-                                        Integer.parseInt(detalle_MedicamentoDTO.fechaVencimiento().split("/")[0]));;
+        fechaFabricacion = LocalDate.parse(detalle_MedicamentoDTO.fechaFabricacion(), formatter);
+        fechaVencimiento = LocalDate.parse(detalle_MedicamentoDTO.fechaVencimiento(), formatter);
 
         try {
             //medicamento.setId(detalle_MedicamentoDTO.Id());
@@ -104,14 +99,14 @@ public class medicamentoServiceImpl implements medicamentoService {
             return medicamento.getId();
         }
         catch (Exception ex){
-           throw ex;
+           throw new Exception("Error al actualizar el medicamento con el id: " + detalle_MedicamentoDTO.Id());
         }
     }
 
     @Override
     public int eliminarMedicamento(int id) throws Exception {
-        Optional<medicamento> medicamentoOptional = medicamentoRepository.findById(id);
-        medicamento medicamento = new medicamento();
+        Optional<Medicamento> medicamentoOptional = medicamentoRepository.findById(id);
+        Medicamento medicamento = new Medicamento();
 
         if(medicamentoOptional.isEmpty()){
             throw new Exception("No existe un medicamento con el id: " + id);
@@ -125,21 +120,21 @@ public class medicamentoServiceImpl implements medicamentoService {
             return medicamento.getId();
         }
         catch (Exception ex){
-            throw ex;
+            throw new Exception("Error al eliminar el medicamento con el id: " + id);
         }
     }
 
     @Override
-    public List<medicamentoDetalleDTO> listarMedicamentos() throws Exception {
-        List<medicamento> medicamentos = medicamentoRepository.findAll();
-        List<medicamentoDetalleDTO>  listaMedicamentos = new ArrayList<>();
+    public List<MedicamentoDetalleDTO> listarMedicamentos() throws Exception {
+        List<Medicamento> medicamentos = medicamentoRepository.findAll();
+        List<MedicamentoDetalleDTO>  listaMedicamentos = new ArrayList<>();
 
         if(medicamentos.isEmpty()){
             throw new Exception("No hay Medicamentos registrados");
         }
 
-        for (inventario.entities.medicamento medicamento : medicamentos) {
-            listaMedicamentos.add(new medicamentoDetalleDTO(medicamento.getId(),
+        for (Medicamento medicamento : medicamentos) {
+            listaMedicamentos.add(new MedicamentoDetalleDTO(medicamento.getId(),
                     medicamento.getNombre(),
                     medicamento.getLaboratorioFabrica(),
                     medicamento.getFechaFabricacion().toString(),

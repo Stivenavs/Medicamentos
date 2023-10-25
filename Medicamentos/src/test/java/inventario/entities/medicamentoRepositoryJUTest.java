@@ -1,6 +1,6 @@
 package inventario.entities;
 
-import inventario.repositories.medicamentoRepository;
+import inventario.repositories.MedicamentoRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,14 +10,14 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 @DataJpaTest
-public class medicamentoRepositoryJUTest {
+public class MedicamentoRepositoryJUTest {
 
     @Autowired
-    private medicamentoRepository medicamentoRepo;
+    private MedicamentoRepository medicamentoRepo;
 
     @Test
     public void WhenFindById_ThenReturnMedicamento(){
-        medicamento medicamento01 = medicamento.builder()
+        Medicamento medicamento01 = Medicamento.builder()
                 .id(2)
                 .nombre("Omeprazol")
                 .laboratorioFabrica("TQ")
@@ -28,7 +28,7 @@ public class medicamentoRepositoryJUTest {
                 .activo(true).build();
         medicamentoRepo.save(medicamento01);
 
-        Optional<medicamento> medicamentoNuevo = medicamentoRepo.findById(medicamento01.getId());
+        Optional<Medicamento> medicamentoNuevo = medicamentoRepo.findById(medicamento01.getId());
         Assertions.assertTrue(medicamentoNuevo.isPresent());
 
     }

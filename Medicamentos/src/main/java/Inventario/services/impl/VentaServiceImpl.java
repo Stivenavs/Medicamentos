@@ -1,13 +1,13 @@
 package inventario.services.impl;
 
-import inventario.dto.ventaDetalleDTO;
-import inventario.dto.registroVentaDTO;
-import inventario.dto.filtroVentaDTO;
-import inventario.entities.medicamento;
-import inventario.entities.venta;
-import inventario.repositories.medicamentoRepository;
-import inventario.repositories.ventaRepository;
-import inventario.services.interfaces.ventaService;
+import inventario.dto.VentaDetalleDTO;
+import inventario.dto.RegistroVentaDTO;
+import inventario.dto.FiltroVentaDTO;
+import inventario.entities.Medicamento;
+import inventario.entities.Venta;
+import inventario.repositories.MedicamentoRepository;
+import inventario.repositories.VentaRepository;
+import inventario.services.interfaces.VentaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,17 +18,17 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class ventaServiceImpl implements ventaService {
+public class VentaServiceImpl implements VentaService {
 
-    private final medicamentoRepository medicamentoRepository;
-    private final ventaRepository ventaRepository;
+    private final MedicamentoRepository medicamentoRepository;
+    private final VentaRepository ventaRepository;
 
     @Override
-    public int registrarVenta(registroVentaDTO regVentaDTO) throws Exception {
-       venta venta = new venta();
-       inventario.entities.venta ventaNuevo;
-       medicamento medicamento;
-       Optional<inventario.entities.medicamento> medicamentoOptional = medicamentoRepository.findById(regVentaDTO.idMedicamento());
+    public int registrarVenta(RegistroVentaDTO regVentaDTO) throws Exception {
+       Venta venta = new Venta();
+       Venta ventaNuevo;
+       Medicamento medicamento;
+       Optional<Medicamento> medicamentoOptional = medicamentoRepository.findById(regVentaDTO.idMedicamento());
 
        if(medicamentoOptional.isEmpty()){
            throw new Exception("No existe un medicamento con el id: " + regVentaDTO.idMedicamento());
@@ -55,21 +55,21 @@ public class ventaServiceImpl implements ventaService {
            return ventaNuevo.getId();
        }
        catch (Exception ex){
-           throw ex;
+           throw new Exception("Erro al registrar la venta");
        }
     }
 
     @Override
-    public List<ventaDetalleDTO> listarVentas() throws Exception {
-        List<venta> ventas = ventaRepository.findAll();
-        List<ventaDetalleDTO> listaVentas = new ArrayList<>();
+    public List<VentaDetalleDTO> listarVentas() throws Exception {
+        List<Venta> ventas = ventaRepository.findAll();
+        List<VentaDetalleDTO> listaVentas = new ArrayList<>();
 
         if(ventas.isEmpty()){
             throw new Exception("No hay ventas registradas");
         }
 
-        for (inventario.entities.venta venta: ventas) {
-            listaVentas.add(new ventaDetalleDTO(venta.getId(),
+        for (Venta venta: ventas) {
+            listaVentas.add(new VentaDetalleDTO(venta.getId(),
                     venta.getFechaHora(),
                     venta.getCantidad(),
                     venta.getMedicamento().getId(),
@@ -81,9 +81,9 @@ public class ventaServiceImpl implements ventaService {
     }
 
     @Override
-    public List<ventaDetalleDTO> listarVentasFechas(filtroVentaDTO ventaFiltroDTO) throws Exception {
-        List<venta> ventas = ventaRepository.findAll();
-        List<ventaDetalleDTO> listaVentas = new ArrayList<>();
+    public List<VentaDetalleDTO> listarVentasFechas(FiltroVentaDTO ventaFiltroDTO) throws Exception {
+        List<Venta> ventas = ventaRepository.findAll();
+        List<VentaDetalleDTO> listaVentas = new ArrayList<>();
         LocalDateTime fechaInicio;
         LocalDateTime fechaFinal;
 
@@ -91,8 +91,8 @@ public class ventaServiceImpl implements ventaService {
             throw new Exception("No hay ventas registradas");
         }
 
-        for (inventario.entities.venta venta: ventas) {
-            listaVentas.add(new ventaDetalleDTO(venta.getId(),
+        for (Venta venta: ventas) {
+            listaVentas.add(new VentaDetalleDTO(venta.getId(),
                     venta.getFechaHora(),
                     venta.getCantidad(),
                     venta.getMedicamento().getId(),

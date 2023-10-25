@@ -1,4 +1,4 @@
 package inventario.dto;
 
-public record filtroVentaDTO(String fechaInicio, String fechaFinal) {
+public record FiltroVentaDTO(String fechaInicio, String fechaFinal) {
 }
