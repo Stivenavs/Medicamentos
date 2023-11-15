@@ -59,7 +59,7 @@ public class MedicamentoController {
         return ResponseEntity.ok(medicamentoDTO);
     }
 
-    @GetMapping(value = "/actualizar")
+    @PostMapping(value = "/actualizar")
     public ResponseEntity<HttpStatus> ActualizarMedicamento(@RequestBody MedicamentoOutDTO detalle_MedicamentoDTO ) {
 
         try {
@@ -72,7 +72,7 @@ public class MedicamentoController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping(value = "/eliminar/{id}")
+    @PostMapping(value = "/eliminar/{id}")
     public ResponseEntity<HttpStatus> EliminarMedicamento(@PathVariable("id") int id) {
 
 
