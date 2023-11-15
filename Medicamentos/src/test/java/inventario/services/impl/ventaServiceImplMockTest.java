@@ -1,7 +1,8 @@
 package inventario.services.impl;
 
-import inventario.repositories.MedicamentoRepository;
-import inventario.repositories.VentaRepository;
+import inventario.application.VentaServiceImpl;
+import inventario.infraestructure.adapters.out.database.repositories.MedicamentoRepository;
+import inventario.infraestructure.adapters.out.database.repositories.VentaRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 

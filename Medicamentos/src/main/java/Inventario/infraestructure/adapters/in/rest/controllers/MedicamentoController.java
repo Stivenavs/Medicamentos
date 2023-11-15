@@ -1,8 +1,8 @@
-package inventario.controllers;
+package inventario.infraestructure.adapters.in.rest.controllers;
 
-import inventario.dto.MedicamentoDetalleDTO;
-import inventario.dto.RegistroMedicamentoDTO;
-import inventario.services.interfaces.MedicamentoService;
+import inventario.infraestructure.adapters.in.rest.in.MedicamentoInDTO;
+import inventario.infraestructure.adapters.in.rest.out.MedicamentoOutDTO;
+import inventario.infraestructure.ports.MedicamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ public class MedicamentoController {
     private MedicamentoService medicamento_Service;
 
     @PostMapping(value = "/crear")
-    public ResponseEntity<HttpStatus> CrearMedicamento(@RequestBody RegistroMedicamentoDTO reg_MedicamentoDTO) {
+    public ResponseEntity<HttpStatus> CrearMedicamento(@RequestBody MedicamentoInDTO reg_MedicamentoDTO) {
 
         try{
             medicamento_Service.crearMedicamento(reg_MedicamentoDTO);
@@ -32,8 +32,8 @@ public class MedicamentoController {
     }
 
     @GetMapping(value = "/listar")
-    public ResponseEntity<List<MedicamentoDetalleDTO>> ListarMedicamentos() {
-        List<MedicamentoDetalleDTO> listaMedicamentos = new ArrayList<>();
+    public ResponseEntity<List<MedicamentoOutDTO>> ListarMedicamentos() {
+        List<MedicamentoOutDTO> listaMedicamentos = new ArrayList<>();
 
         try {
             listaMedicamentos = medicamento_Service.listarMedicamentos();
@@ -46,8 +46,8 @@ public class MedicamentoController {
     }
 
     @GetMapping(value = "/obtener/{id}")
-    public ResponseEntity<MedicamentoDetalleDTO> ObtenerMedicamento(@PathVariable("id") int id) {
-        MedicamentoDetalleDTO medicamentoDTO;
+    public ResponseEntity<MedicamentoOutDTO> ObtenerMedicamento(@PathVariable("id") int id) {
+        MedicamentoOutDTO medicamentoDTO;
 
         try {
             medicamentoDTO = medicamento_Service.obtenerMedicamento(id);
@@ -60,7 +60,7 @@ public class MedicamentoController {
     }
 
     @GetMapping(value = "/actualizar")
-    public ResponseEntity<HttpStatus> ActualizarMedicamento(@RequestBody MedicamentoDetalleDTO detalle_MedicamentoDTO ) {
+    public ResponseEntity<HttpStatus> ActualizarMedicamento(@RequestBody MedicamentoOutDTO detalle_MedicamentoDTO ) {
 
         try {
             medicamento_Service.actualizarMedicamento(detalle_MedicamentoDTO);

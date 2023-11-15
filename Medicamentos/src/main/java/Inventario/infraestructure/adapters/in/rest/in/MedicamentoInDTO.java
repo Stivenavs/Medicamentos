@@ -1,6 +1,6 @@
-package inventario.dto;
+package inventario.infraestructure.adapters.in.rest.in;
 
-public record RegistroMedicamentoDTO(
+public record MedicamentoInDTO(
         String nombre,
         String laboratorioFabrica,
         String fechaFabricacion,

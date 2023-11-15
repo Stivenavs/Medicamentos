@@ -1,4 +1,4 @@
-package inventario.entities;
+package inventario.infraestructure.adapters.out.database.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -10,9 +10,9 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
-@Data
-public class Venta implements Serializable {
+@AllArgsConstructor
+@Table(name = "venta")
+public class VentaEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,8 +22,8 @@ public class Venta implements Serializable {
 
     private int cantidad;
 
-    @OneToOne
-    private Medicamento medicamento;
+    @ManyToOne
+    private MedicamentoEntity medicamento;
 
     private float valorUnitario;
 

@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="76890512-9a58-470b-af5e-6c4e68b407a9" name="Changes" comment="" />
+    <list default="true" id="76890512-9a58-470b-af5e-6c4e68b407a9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,7 +55,7 @@
     "android.gradle.sync.needed": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/Stiven Restrepo/Documents/Konex/Dev/Medicamentos",
+    "last_opened_file_path": "C:/Users/Stiven Restrepo/Documents/Konex/dev2/Medicamentos/Medicamentos",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -82,6 +84,8 @@
       <workItem from="1696972358999" duration="2006000" />
       <workItem from="1696974472338" duration="413000" />
       <workItem from="1696974940817" duration="149000" />
+      <workItem from="1700063728640" duration="90000" />
+      <workItem from="1700063836683" duration="82000" />
     </task>
     <servers />
   </component>
